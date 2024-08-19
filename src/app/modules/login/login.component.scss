@@ -1,0 +1,30 @@
+.login-container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.login-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 67px;
+    padding-left: 77px;
+    padding-right: 77px;
+}
+
+.login-bottom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding-bottom: 67px;
+}
+
+a{
+    color: #42526E;
+    &:visited{
+        color: #42526E;
+    }
+}
