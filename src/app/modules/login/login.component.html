@@ -1,15 +1,19 @@
-<div class="login-container">
+<div class="login-container" [style]="{ 'background-color': showLogin ? '#FFFFFF' : '#4589FF' }">
   <div class="login-top">
     <div class="logo">
-      <img src="" alt="join logo" />
+      <img [src]="showLogin ? 'images/logo-blue.png' : 'images/logo-white.png'" alt="join logo" />
     </div>
-    <div class="signup">
+    <div class="signup-switch">
       <span>Not a Join user?</span>
-      <button>Sign up</button>
+      <button class="signup-switch-btn" (click)="showLogin = false">Sign up</button>
     </div>
   </div>
+
+  @if(showLogin){
   <div class="login-authentication-container"></div>
+  } @else {
   <div class="signup-authetication-container"></div>
+  }
   <div class="login-bottom">
     <span><a routerLink="/privacy-policy" target="_blank">Privacy Policy</a></span>
     <span><a routerLink="/legal-notice" target="_blank">Legal Notice</a></span>
