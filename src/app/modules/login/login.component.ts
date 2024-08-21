@@ -11,4 +11,5 @@ import { RouterLink } from '@angular/router';
 export class LoginComponent {
 
   showLogin: boolean = true;
+  checked: boolean = false;
 }

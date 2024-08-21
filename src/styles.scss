@@ -14,3 +14,21 @@ body{
 a{
     text-decoration: none;
 }
+
+button{
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn-blue{
+    background-color: #4589FF;
+    color: #FFFFFF;
+    font-size: 1.4375rem;
+}
+
+.btn-white{
+    background-color: #FFFFFF;
+    color: #4589FF;
+    font-size: 1.4375rem;
+}

@@ -5,12 +5,29 @@
     </div>
     <div class="signup-switch">
       <span>Not a Join user?</span>
-      <button class="signup-switch-btn" (click)="showLogin = false">Sign up</button>
+      <button class="signup-switch-btn btn-blue" (click)="showLogin = false">Sign up</button>
     </div>
   </div>
 
   @if(showLogin){
-  <div class="login-authentication-container"></div>
+  <div class="login-authentication">
+    <div class="login-authentication-container">
+      <h1>Log in</h1>
+      <div class="login-form">
+        <input class="input" type="email" placeholder="Email">
+        <input class="input" type="password" placeholder="Password">
+        <div class="remember-me">
+          <img class="checkbox" [src]="checked ? 'images/checked-blue.png' : 'images/unchecked-blue.png'"
+            (click)="checked = !checked" alt="checkbox">
+          <span>Remember me</span>
+        </div>
+      </div>
+      <div class="login-authentication-btn-container">
+        <button class="login-authentication-btn-registered btn-blue">Log in</button>
+        <button class="login-authentication-btn-guest btn-white">Guest log in</button>
+      </div>
+    </div>
+  </div>
   } @else {
   <div class="signup-authetication-container"></div>
   }
