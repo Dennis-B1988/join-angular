@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { SignupFormComponent } from './signup-form/signup-form.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, LoginFormComponent, SignupFormComponent],
+  providers: [LoginFormComponent, SignupFormComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -19,14 +22,5 @@ export class LoginComponent {
   constructor() { }
 
 
-  signUpSuccess() {
-    this.showSuccess = true;
-    let interval = setInterval(() => {
-      if (this.showSuccess) {
-        this.showSuccess = false;
-        clearInterval(interval)
-      }
-    }, 1000)
 
-  }
 }

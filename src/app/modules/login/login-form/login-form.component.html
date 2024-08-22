@@ -1,0 +1,29 @@
+<div class="login-authentication">
+    <div class="login-authentication-container">
+        <div class="headline">
+            <span class="login-headline">Log in</span>
+            <img src="images/blue-line.png" alt="">
+        </div>
+        <div class="login-form">
+            <div class="login-form-input">
+                <div class="form-input-container">
+                    <input class="input" type="email" placeholder="Email">
+                    <img src="images/mail.png" alt="email">
+                </div>
+                <div class="form-input-container">
+                    <input class="input" type="password" placeholder="Password">
+                    <img src="images/lock.png" alt="password">
+                </div>
+            </div>
+            <div class="remember-me">
+                <img class="checkbox" [src]="checked ? 'images/checked-blue.png' : 'images/unchecked-blue.png'"
+                    (click)="checked = !checked" alt="checkbox">
+                <span>Remember me</span>
+            </div>
+        </div>
+        <div class="login-authentication-btn-container">
+            <button class="login-authentication-btn-registered btn-blue">Log in</button>
+            <button class="login-authentication-btn-guest btn-white">Guest log in</button>
+        </div>
+    </div>
+</div>
