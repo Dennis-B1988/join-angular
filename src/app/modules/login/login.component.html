@@ -3,19 +3,35 @@
     <div class="logo">
       <img [src]="showLogin ? 'images/logo-blue.png' : 'images/logo-white.png'" alt="join logo" />
     </div>
+    @if(showLogin){
     <div class="signup-switch">
-      <span>Not a Join user?</span>
-      <button class="signup-switch-btn btn-blue" (click)="showLogin = false">Sign up</button>
+      <div class="signup-switch-container">
+        <span>Not a Join user?</span>
+        <button class="signup-switch-btn btn-blue" (click)="showLogin = false">Sign up</button>
+      </div>
     </div>
+    }
   </div>
 
   @if(showLogin){
+
   <div class="login-authentication">
     <div class="login-authentication-container">
-      <h1>Log in</h1>
+      <div class="headline">
+        <span class="login-headline">Log in</span>
+        <img src="images/blue-line.png" alt="">
+      </div>
       <div class="login-form">
-        <input class="input" type="email" placeholder="Email">
-        <input class="input" type="password" placeholder="Password">
+        <div class="login-form-input">
+          <div class="form-input-container">
+            <input class="input" type="email" placeholder="Email">
+            <img src="images/mail.png" alt="email">
+          </div>
+          <div class="form-input-container">
+            <input class="input" type="password" placeholder="Password">
+            <img src="images/lock.png" alt="password">
+          </div>
+        </div>
         <div class="remember-me">
           <img class="checkbox" [src]="checked ? 'images/checked-blue.png' : 'images/unchecked-blue.png'"
             (click)="checked = !checked" alt="checkbox">
@@ -28,11 +44,64 @@
       </div>
     </div>
   </div>
+
   } @else {
-  <div class="signup-authetication-container"></div>
-  }
-  <div class="login-bottom">
-    <span><a routerLink="/privacy-policy" target="_blank">Privacy Policy</a></span>
-    <span><a routerLink="/legal-notice" target="_blank">Legal Notice</a></span>
+
+  <div class="signup-authetication">
+    <div class="signup-authentication-container">
+      <div class="signup-headline">
+        <div class="headline">
+          <span>Sign up</span>
+          <img src="images/blue-line.png" alt="">
+        </div>
+        <div class="back-to-login" (click)="showLogin = true" (click)="backToLogin = 'images/back.png'">
+          <img [src]="backToLogin" (mouseover)="backToLogin = 'images/back-hover.png'"
+            (mouseout)="backToLogin = 'images/back.png'" alt="back to login">
+        </div>
+      </div>
+      <div class="signup-form">
+        <div class="signup-form-input">
+          <div class="form-input-container">
+            <input class="input" type="text" placeholder="Name">
+            <img src="images/person.png" alt="name">
+          </div>
+          <div class="form-input-container">
+            <input class="input" type="email" placeholder="Email">
+            <img src="images/mail.png" alt="email">
+          </div>
+          <div class="form-input-container">
+            <input class="input" type="password" placeholder="Password">
+            <img src="images/lock.png" alt="password">
+          </div>
+          <div class="form-input-container">
+            <input class="input" type="password" placeholder="Confirm password">
+            <img src="images/lock.png" alt="password">
+          </div>
+        </div>
+        <div class="privacy-policy-checkmark">
+          <img class="checkbox" [src]="checked ? 'images/checked-blue.png' : 'images/unchecked-blue.png'"
+            (click)="checked = !checked" alt="checkbox">
+          <span>I accept the <a routerLink="/privacy-policy" target="_blank">Privacy Policy</a></span>
+        </div>
+      </div>
+      <div class="signup-authetication-btn-container">
+        <button class="signup-authetication-btn-registered btn-blue" (click)="signUpSuccess()">Sign up</button>
+      </div>
+    </div>
   </div>
+
+  }
+
+  <div class="login-bottom">
+    <span><a routerLink="/privacy-policy" target="_blank"
+        [style]="{ 'color': showLogin ? '#42526E' : '#FFFFFF' }">Privacy Policy</a></span>
+    <span><a routerLink="/legal-notice" target="_blank" [style]="{ 'color': showLogin ? '#42526E' : '#FFFFFF' }">Legal
+        Notice</a></span>
+  </div>
+
+  @if(showSuccess){
+  <div class="signup-success">
+    <span>You Signed Up successfully</span>
+  </div>
+  }
 </div>
