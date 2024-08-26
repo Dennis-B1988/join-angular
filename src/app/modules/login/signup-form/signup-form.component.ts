@@ -16,6 +16,8 @@ export class SignupFormComponent {
   showLogin: boolean = true;
   checked: boolean = false;
   backToLogin: string = 'images/back.png';
+  confirmPassword: any;
+
   user = new User();
 
   login = inject(LoginComponent);
@@ -23,6 +25,7 @@ export class SignupFormComponent {
   auth: Auth = inject(Auth);
 
   constructor() { }
+
 
   async createUser() {
     try {
@@ -34,16 +37,29 @@ export class SignupFormComponent {
         mail: this.user.mail,
         id: uid
       });
-      this.signUpSuccess();
       this.clearInputs();
+      this.signUpSuccess();
     } catch (error: any) { }
   }
+
+  checkFormValidation() {
+    let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (this.user.mail.match(validRegex) && this.user.name != '' && this.user.password != '' && this.confirmPassword == this.user.password && this.checked) {
+      return true
+    } else {
+      return false
+    }
+  }
+
 
   clearInputs() {
     this.user.name = '';
     this.user.mail = '';
     this.user.password = '';
+    this.confirmPassword = '';
+    this.checked = false;
   }
+
 
   signUpSuccess() {
     this.login.showSuccess = true;
