@@ -1,5 +1,5 @@
 .signup-authetication {
-    border-radius: 30px;
+    border-radius: 1.875rem;
     box-shadow: 0px 0px 10px 3px #00000014;
     background-color: #FFFFFF;
 }
@@ -10,7 +10,7 @@
     justify-content: center;
     align-items: center;
     gap: 2.4375rem;
-    padding: 3rem 7.1875rem 3rem 7.1875rem;
+    padding: 48px 115px 48px 115px;
 }
 
 .signup-headline {
@@ -68,13 +68,16 @@
 
 .input {
     width: 26.375rem;
-    padding: .75rem 1.3125rem .75rem 1.3125rem;
+    padding: 12px 21px 12px 21px;
     border-top: 0;
     border-bottom: .0625rem solid #d1d1d1;
     border-left: 0;
     border-right: 0;
     font-size: 1.1875rem;
-    color: #d1d1d1;
+    
+    ::placeholder {
+        color: #d1d1d1;
+    }
 }
 
 .remember-me {
@@ -106,7 +109,7 @@
 }
 
 .signup-authetication-btn-registered {
-    padding: .625rem 1.25rem .625rem 1.25rem;
+    padding: 10px 20px 10px 20px;
     border-radius: .5rem;
     font-size: 1.4375rem;
 }
