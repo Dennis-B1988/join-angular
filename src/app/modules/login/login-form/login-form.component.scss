@@ -64,6 +64,10 @@
     ::placeholder {
         color: #d1d1d1;
     }
+
+    &:focus {
+        outline: none;
+    }
 }
 
 .remember-me {

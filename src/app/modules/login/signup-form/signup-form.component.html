@@ -1,47 +1,146 @@
 <div class="signup-authetication">
-    <div class="signup-authentication-container">
-        <div class="signup-headline">
-            <div class="headline">
-                <span>Sign up</span>
-                <img src="images/blue-line.png" alt="">
-            </div>
-            <div class="back-to-login" (click)="this.login.showLogin = true" (click)="backToLogin = 'images/back.png'">
-                <img [src]="backToLogin" (mouseover)="backToLogin = 'images/back-hover.png'"
-                    (mouseout)="backToLogin = 'images/back.png'" alt="back to login">
-            </div>
-        </div>
-        <div class="signup-form">
-            <div class="signup-form-input">
-                <div class="form-input-container">
-                    <input class="input" type="text" placeholder="Name" [(ngModel)]="user.name" required>
-                    <img src="images/person.png" alt="name">
-                </div>
-                <div class="form-input-container">
-                    <input class="input" type="email" placeholder="Email" [(ngModel)]="user.mail" email="true" required>
-                    <img src="images/mail.png" alt="email">
-                </div>
-                <div class="form-input-container">
-                    <input class="input" type="password" placeholder="Password" [(ngModel)]="user.password">
-                    <img src="images/lock.png" alt="password">
-                </div>
-                <div class="form-input-container">
-                    <input class="input" type="password" placeholder="Confirm password" [(ngModel)]="confirmPassword">
-                    <img src="images/lock.png" alt="password">
-                </div>
-            </div>
-            <div class="privacy-policy-checkmark">
-                <img class="checkbox" [src]="checked ? 'images/checked-blue.png' : 'images/unchecked-blue.png'"
-                    (click)="checked = !checked" alt="checkbox">
-                <span>I accept the <a routerLink="/privacy-policy" target="_blank">Privacy Policy</a></span>
-            </div>
-        </div>
-        <div class="signup-authetication-btn-container">
-            @if(checkFormValidation()) {
-            <button class="signup-authetication-btn-registered btn-blue" (click)="createUser()">Sign up</button>
-            } @else {
-            <button class="signup-authetication-btn-registered"
-                [style]="{ backgroundColor: '#B6B6B6;', cursor: 'not-allowed' }" disabled>Sign up</button>
-            }
-        </div>
+  <div class="signup-authentication-container">
+    <div class="signup-headline">
+      <div class="headline">
+        <span>Sign up</span>
+        <img src="images/blue-line.png" alt="" />
+      </div>
+      <div
+        class="back-to-login"
+        (click)="this.login.showLogin = true"
+        (click)="backToLogin = 'images/back.png'"
+      >
+        <img
+          [src]="backToLogin"
+          (mouseover)="backToLogin = 'images/back-hover.png'"
+          (mouseout)="backToLogin = 'images/back.png'"
+          alt="back to login"
+        />
+      </div>
     </div>
+    <div class="signup-form">
+      <div class="signup-form-input">
+        <div class="form-input-container">
+          <input
+            class="input"
+            type="text"
+            placeholder="Name"
+            [(ngModel)]="user.name"
+            required
+          />
+          <img src="images/person.png" alt="name" />
+        </div>
+        <div class="form-input-container">
+          <input
+            class="input"
+            type="email"
+            placeholder="Email"
+            [(ngModel)]="user.mail"
+            email="true"
+            required
+          />
+          <img src="images/mail.png" alt="email" />
+        </div>
+
+        <div class="form-input-container">
+          <input
+            #passwordEmpty
+            class="input"
+            [type]="passwordVisibile ? 'text' : 'password'"
+            placeholder="Password"
+            [(ngModel)]="user.password"
+            required
+          />
+          @if (!passwordEmpty.value.length) {
+            <img src="images/lock.png" alt="password" />
+          } @else {
+            <img
+              class="password-visibility-icon"
+              [src]="
+                passwordVisibile
+                  ? 'images/visibility_off.png'
+                  : 'images/visibility.png'
+              "
+              (click)="showPassword()"
+              alt="password"
+            />
+          }
+        </div>
+
+        <div class="confirm-password-container">
+          <div class="form-input-container">
+            <input
+              #confirmPasswordEmpty
+              class="input"
+              [type]="confirmPasswordVisibile ? 'text' : 'password'"
+              placeholder="Confirm password"
+              [(ngModel)]="confirmPassword"
+              [style]="{
+                'border-bottom':
+                  confirmPassword != user.password &&
+                  confirmPasswordEmpty.value.length > 0
+                    ? '1px solid #FF8190'
+                    : '1px solid #d1d1d1'
+              }"
+              required
+            />
+            @if (!confirmPasswordEmpty.value.length) {
+              <img src="images/lock.png" alt="password" />
+            } @else {
+              <img
+                class="password-visibility-icon"
+                [src]="
+                  confirmPasswordVisibile
+                    ? 'images/visibility_off.png'
+                    : 'images/visibility.png'
+                "
+                (click)="showConfirmPassword()"
+                alt="password"
+              />
+            }
+          </div>
+          @if (
+            confirmPassword != user.password &&
+            confirmPasswordEmpty.value.length > 0
+          ) {
+            <span class="wrong-password"
+              >Your passwords don't match. Please try again.</span
+            >
+          }
+        </div>
+      </div>
+      <div class="privacy-policy-checkmark">
+        <img
+          class="checkbox"
+          [src]="
+            checked ? 'images/checked-blue.png' : 'images/unchecked-blue.png'
+          "
+          (click)="checked = !checked"
+          alt="checkbox"
+        />
+        <span
+          >I accept the
+          <a routerLink="/privacy-policy" target="_blank">Privacy Policy </a>
+        </span>
+      </div>
+    </div>
+    <div class="signup-authetication-btn-container">
+      @if (checkFormValidation()) {
+        <button
+          class="signup-authetication-btn-registered btn-blue"
+          (click)="createUser()"
+        >
+          Sign up
+        </button>
+      } @else {
+        <button
+          class="signup-authetication-btn-registered btn-blue"
+          [style]="{ cursor: 'not-allowed' }"
+          disabled
+        >
+          Sign up
+        </button>
+      }
+    </div>
+  </div>
 </div>
