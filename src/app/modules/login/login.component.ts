@@ -13,7 +13,7 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
 })
 export class LoginComponent {
 
-  showLogin: boolean = false;
+  showLogin: boolean = true;
   checked: boolean = false;
   backToLogin: string = 'images/back.png';
   showSuccess: boolean = false;

@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { settings } from '@angular/fire/analytics';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
-import { addDoc, collection, Firestore } from '@angular/fire/firestore';
+import { addDoc, collection, doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { User } from '../../../core/models/user.class';
 import { LoginComponent } from '../login.component';
@@ -44,16 +43,31 @@ export class SignupFormComponent {
     try {
       const userCredential = await createUserWithEmailAndPassword(this.auth, this.user.mail, this.user.password);
       const uid = userCredential.user.uid;
-      const userCollection = collection(this.firestore, 'users');
-      await addDoc(userCollection, {
+      const usersCollection = collection(this.firestore, 'users');
+      const userDocRef = doc(usersCollection, uid);
+      await setDoc(userDocRef, {
         name: this.user.name,
         mail: this.user.mail,
         id: uid
       });
       this.clearInputs();
       this.signUpSuccess();
-    } catch (error: any) { }
+      console.log('User created and stored in Firestore:', userCredential.user);
+    } catch (error: any) {
+      console.error('Error creating user:', error);
+    }
   }
+
+  // async createUser() {
+  //   console.log(this.user);
+  //   createUserWithEmailAndPassword(this.auth, this.user.mail, this.user.password);
+  //   const usersCollection = collection(this.firestore, 'users');
+  //   addDoc(usersCollection, this.user.toJSON()).then((result: any) => {
+  //     console.log(result);
+  //     this.clearInputs();
+  //     this.signUpSuccess();
+  //   })
+  // }
 
   checkFormValidation() {
     let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
